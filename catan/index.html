@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="catan.css">
+    <title>カタン</title>
+</head>
+
+<body>
+    <div style="display:flex;position:relative;">
+        <svg id="field" width="499" height="432"></svg>
+        <div id="heapdiv">
+            発展カード
+            <div class="resourcecard" style="display:block;"></div>
+            残り<span>25</span>枚
+        </div>
+		<div id="dicediv">
+			<svg width="40" height="40"><g></g></svg>
+			<svg width="40" height="40"><g></g></svg>
+		</div>
+        <input type="button" id="endbtn" value="終了" />
+        <div>
+            <div class="playerdiv">
+                <div class="medal">
+                    <div class="symbol"></div>
+                </div>
+                <div>
+                    <div class="resourcecard"></div>
+                    <span>0</span>
+                    <table border="1">
+                        <tr>
+                            <th></th>
+                            <th>騎士</th>
+                            <th>街道</th>
+                            <th>発見</th>
+                            <th>独占</th>
+                            <th>得点</th>
+                        </tr>
+						<tr>
+							<th>未使用</th>
+							<td colspan="5">0</td>
+						</tr>
+                        <tr>
+                            <th>使用済</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="playerdiv">
+                <div class="medal">
+                    <div class="symbol"></div>
+                </div>
+                <div>
+                    <div class="resourcecard"></div>
+                    <span>0</span>
+                    <table border="1">
+                        <tr>
+                            <th></th>
+                            <th>騎士</th>
+                            <th>街道</th>
+                            <th>発見</th>
+                            <th>独占</th>
+                            <th>得点</th>
+                        </tr>
+						<tr>
+							<th>未使用</th>
+							<td colspan="5">0</td>
+						</tr>
+                        <tr>
+                            <th>使用済</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="playerdiv">
+                <div class="medal">
+                    <div class="symbol"></div>
+                </div>
+                <div>
+                    <div class="resourcecard"></div>
+                    <span>0</span>
+                    <table border="1">
+                        <tr>
+                            <th></th>
+                            <th>騎士</th>
+                            <th>街道</th>
+                            <th>発見</th>
+                            <th>独占</th>
+                            <th>得点</th>
+                        </tr>
+						<tr>
+							<th>未使用</th>
+							<td colspan="5">0</td>
+						</tr>
+                        <tr>
+                            <th>使用済</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+		<div id="messagediv"></div>
+        <div id="longesttitle">路</div>
+        <div id="largesttitle">騎</div>
+    </div>
+    <div style="display:flex;margin-top:5px;">
+        <div id="guidediv">
+            <div id="roaddiv">
+                道を敷設したい位置をクリック
+            </div>
+            <div id="settlementdiv">
+                開拓地を建設したい位置をクリック
+            </div>
+            <div id="tradediv">
+                <fieldset>
+                    <legend>輸出</legend>
+                    <input type="radio" name="export" onchange="show_guide(state);" />木
+                    <input type="radio" name="export" onchange="show_guide(state);" />泥
+                    <input type="radio" name="export" onchange="show_guide(state);" />羊
+                    <input type="radio" name="export" onchange="show_guide(state);" />麦
+                    <input type="radio" name="export" onchange="show_guide(state);" />鉄
+                </fieldset>
+                <fieldset>
+                    <legend>輸入</legend>
+                    <input type="radio" name="import" />木
+                    <input type="radio" name="import" />泥
+                    <input type="radio" name="import" />羊
+                    <input type="radio" name="import" />麦
+                    <input type="radio" name="import" />鉄
+                </fieldset>
+                <input type="button" value="OK" />
+            </div>
+            <div id="negotiationdiv">
+                <fieldset>
+                    <legend>受け渡し</legend>
+                    木<select onchange="show_guide(state);"></select>
+                    泥<select onchange="show_guide(state);"></select>
+                    羊<select onchange="show_guide(state);"></select>
+                    麦<select onchange="show_guide(state);"></select>
+                    鉄<select onchange="show_guide(state);"></select>
+                </fieldset>
+                <fieldset>
+                    <legend>受け取り</legend>
+                    木<select onchange="show_guide(state);"></select>
+                    泥<select onchange="show_guide(state);"></select>
+                    羊<select onchange="show_guide(state);"></select>
+                    麦<select onchange="show_guide(state);"></select>
+                    鉄<select onchange="show_guide(state);"></select>
+                </fieldset>
+                <input type="button" value="OK" />
+            </div>
+            <div id="negotiationconfirmdiv">
+                以下のプレイヤーが交渉に応じる意思を示しました
+                <fieldset>
+                    <legend>取引相手</legend>
+                    <input type="radio" name="client" /><div class="symbol"></div>
+                    <input type="radio" name="client" /><div class="symbol"></div>
+                    <input type="radio" name="client" /><div class="symbol"></div>
+                    <input type="radio" name="client" disabled="disabled" style="display:none;" />
+                </fieldset>
+                <input type="button" value="OK" />
+            </div>
+			<div id="negotiationreceivediv">
+				<fieldset>
+					<legend>あなたが受け渡す資源</legend>
+					木
+				</fieldset>
+				<fieldset>
+					<legend>あなたが受け取る資源</legend>
+					木
+				</fieldset>
+				<input type="button" value="受諾" style="right:60px;" />
+				<input type="button" value="拒否" />
+			</div>
+            <div id="burstdiv">
+                バーストしました
+                <fieldset>
+                    <legend>廃棄</legend>
+                    木<select onchange="show_guide(state);"></select>
+                    泥<select onchange="show_guide(state);"></select>
+                    羊<select onchange="show_guide(state);"></select>
+                    麦<select onchange="show_guide(state);"></select>
+                    鉄<select onchange="show_guide(state);"></select>
+                </fieldset>
+                <input type="button" value="OK" />
+            </div>
+            <div id="deprivationdiv">
+                <fieldset>
+                    <legend>盗賊</legend>
+                    移動させたい位置をクリック
+                </fieldset>
+                <fieldset>
+                    <legend>資源を奪う対象</legend>
+                    <input type="radio" name="target" onchange="show_guide(state);" /><div class="symbol"></div>
+                    <input type="radio" name="target" onchange="show_guide(state);" /><div class="symbol"></div>
+                    <input type="radio" name="target" onchange="show_guide(state);" /><div class="symbol"></div>
+                    <input type="radio" name="target" onchange="show_guide(state);" disabled="disabled" style="display:none;" />
+                </fieldset>
+                <input type="button" value="OK" />
+            </div>
+            <div id="roadbuildingdiv">
+                道を敷設したい位置をクリック
+                <input type="button" value="OK" />
+            </div>
+            <div id="discoverydiv">
+                <fieldset>
+                    <legend>発見一つ目</legend>
+                    <input type="radio" name="discovery1" onchange="show_guide(state);" />木
+                    <input type="radio" name="discovery1" onchange="show_guide(state);" />泥
+                    <input type="radio" name="discovery1" onchange="show_guide(state);" />羊
+                    <input type="radio" name="discovery1" onchange="show_guide(state);" />麦
+                    <input type="radio" name="discovery1" onchange="show_guide(state);" />鉄
+                </fieldset>
+                <fieldset>
+                    <legend>発見二つ目</legend>
+                    <input type="radio" name="discovery2" onchange="show_guide(state);" />木
+                    <input type="radio" name="discovery2" onchange="show_guide(state);" />泥
+                    <input type="radio" name="discovery2" onchange="show_guide(state);" />羊
+                    <input type="radio" name="discovery2" onchange="show_guide(state);" />麦
+                    <input type="radio" name="discovery2" onchange="show_guide(state);" />鉄
+                </fieldset>
+                <input type="button" value="OK" />
+            </div>
+            <div id="monopolydiv">
+                <fieldset>
+                    <legend>独占</legend>
+                    <input type="radio" name="monopoly" onchange="show_guide(state);" />木
+                    <input type="radio" name="monopoly" onchange="show_guide(state);" />泥
+                    <input type="radio" name="monopoly" onchange="show_guide(state);" />羊
+                    <input type="radio" name="monopoly" onchange="show_guide(state);" />麦
+                    <input type="radio" name="monopoly" onchange="show_guide(state);" />鉄
+                </fieldset>
+                <input type="button" value="OK" />
+            </div>
+        </div>
+        <div id="radiodiv">
+			<div><input type="radio" name="action" value="trade" onclick="show_guide(this.value);" />貿易</div>
+			<div><input type="radio" name="action" value="negotiation" onclick="show_guide(this.value);" />交渉</div>
+			<div><input type="radio" name="action" value="knight" onclick="show_guide(this.value);" />騎士</div>
+			<div><input type="radio" name="action" value="roadbuilding" onclick="show_guide(this.value);" />街道</div>
+			<div><input type="radio" name="action" value="discovery" onclick="show_guide(this.value);" />発見</div>
+			<div><input type="radio" name="action" value="monopoly" onclick="show_guide(this.value);" />独占</div>
+        </div>
+		<div class="playerdiv" style="width:300px;margin-left:5px;">
+			<div class="medal"><div class="symbol"></div></div>
+			<div>
+				<div class="resourcecard"></div>
+				<span>0</span>
+				<div class="resourcecard"></div>
+				<span>0</span>
+				<div class="resourcecard"></div>
+				<span>0</span>
+				<div class="resourcecard"></div>
+				<span>0</span>
+				<div class="resourcecard"></div>
+				<span>0</span>
+				<table border="1">
+					<tr>
+						<th></th>
+						<th>騎士</th>
+						<th>街道</th>
+						<th>発見</th>
+						<th>独占</th>
+						<th>得点</th>
+					</tr>
+					<tr>
+						<th>未使用</th>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<th>使用済</th>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+						<td>0</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+    </div>
+    <script type="text/javascript" src="field.js"></script>
+    <script type="text/javascript" src="catan.js"></script>
+    <script type="text/javascript" src="routine.js"></script>
+    <script type="text/javascript" src="interface.js"></script>
+    <script type="text/javascript" src="process.js"></script>
+</body>
+</html>

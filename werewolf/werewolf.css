@@ -1,0 +1,75 @@
+﻿body {
+	text-size-adjust: 100%;
+	text-align: center;
+	font-size:large;
+}
+
+fieldset {
+	text-align: left;
+}
+
+.roletext {
+	font-weight: bold;
+}
+
+#personality {
+	width: 15em;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#actionguide {
+	margin-top: 1.5em;
+}
+
+.playerlist {
+	width:15em;
+	margin:0 auto;
+	text-align:left;
+}
+
+	.playerlist .nametext {
+		display:inline-block;
+		width: 5em;
+	}
+
+#greatnecromancer {
+	margin: 0 auto;
+	width: 7em;
+	text-align: left;
+}
+
+#wolf {
+	margin: 0 auto;
+	width: 18em;
+	text-align: left;
+}
+
+.mainbtn {
+	margin-top: 1em;
+	width: 60%;
+	background-color: #0099CC;
+	color: white;
+	border-radius: 0.2em;
+	border: 1px solid #0099CC;
+	box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+	text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+	font-size: 200%;
+}
+
+	.mainbtn:active {
+		margin-top: 1em;
+		width: 60%;
+		background: -moz-linear-gradient(top,#BFD9E5, #3D95B7 50%,#0080B3 50%,#0099CC);
+		background: -webkit-gradient(linear, left top, left bottom, from(#BFD9E5), color-stop(0.5,#3D95B7), color-stop(0.5,#0080B3), to(#0099CC));
+		color: white;
+		border-radius: 0.2em;
+		border: 1px solid #0099CC;
+		box-shadow: 1px 1px 1px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.5);
+		text-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+		font-size: 200%;
+	}
+
+.alpha{
+    letter-spacing:0.2em;
+}

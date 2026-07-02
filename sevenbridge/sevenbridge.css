@@ -1,0 +1,79 @@
+﻿body {
+	font-family: sans-serif;
+}
+
+#canvas {
+	display: block;
+	margin-bottom: 5px;
+}
+
+#startdiv {
+	left: 100px;
+	top: 440px;
+	position: absolute;
+}
+
+	#startdiv * {
+		width: 250px;
+		height: 60px;
+		font-size: 28px;
+		margin-right: 110px;
+	}
+
+#configdiv {
+	background-color: pink;
+	width: 760px;
+	height: 490px;
+	padding-left: 25px;
+	padding-top: 25px;
+	padding-right: 25px;
+	padding-bottom: 25px;
+	font-size: 20px;
+	line-height: 30px;
+	position: absolute;
+}
+
+#configcompletebtn {
+	width: 250px;
+	height: 60px;
+	left: 280px;
+	bottom: 40px;
+	font-size: 30px;
+	position: absolute;
+	letter-spacing: 0.5em;
+}
+
+#furodiv {
+	left: 580px;
+	top: 440px;
+	position: absolute;
+}
+
+	#furodiv * {
+		display: block;
+		width: 60px;
+		height: 32px;
+		margin-bottom: 3px;
+		font-size: 16px;
+	}
+
+#inquirebtn {
+	width: 80px;
+	height: 40px;
+	left: 640px;
+	top: 490px;
+	font-size: 18px;
+	position: absolute;
+}
+
+#opinionboard {
+	left: 830px;
+	top: 0px;
+	font-size: 24px;
+	position: absolute;
+}
+
+#opinion {
+	margin-left: 18px;
+	line-height: 32px;
+}

@@ -1,0 +1,104 @@
+﻿.resourcecard {
+	display: inline-block;
+	vertical-align: middle;
+	width: 24px;
+	height: 36px;
+	margin-left: 8px;
+	background-color: gray;
+	border: black solid 1px;
+	border-radius: 4px;
+}
+
+#heapdiv {
+	margin-left: -70px;
+	text-align: center;
+}
+
+	#heapdiv .resourcecard {
+		margin: 0 auto;
+		width: 40px;
+		height: 60px;
+	}
+
+#dicediv {
+	position: absolute;
+	left: 3px;
+	top: 3px;
+}
+
+#endbtn {
+	position: absolute;
+	left: 420px;
+	bottom: 10px;
+	width: 60px;
+	height: 40px;
+	font-size: large;
+}
+
+.playerdiv {
+	display: flex;
+	width: 230px;
+	height: 110px;
+	padding: 5px;
+	background-color: lightpink;
+	font-size: large;
+}
+
+.medal {
+	width: 30px;
+	font-size: x-large;
+	font-weight: bold;
+}
+
+.symbol {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+}
+
+.playerdiv .symbol {
+	width: 22px;
+	height: 22px;
+}
+
+#longesttitle {
+	color: darkred;
+}
+
+#largesttitle {
+	color: teal;
+}
+
+table {
+	margin-top: 2px;
+	font-size: small;
+	border-collapse: collapse;
+}
+
+td {
+	text-align: center;
+	font-size: larger;
+}
+
+#messagediv {
+	position: absolute;
+	bottom: 0px;
+	font-size: large;
+}
+
+#guidediv {
+	position:relative;
+	width: 300px;
+	height: 160px;
+	padding: 5px;
+	background-color: silver;
+	border: black solid 1px;
+}
+
+	#guidediv input[type="button"] {
+		position:absolute;
+		right:10px;
+		bottom:5px;
+		height:25px;
+		font-size:medium;
+	}

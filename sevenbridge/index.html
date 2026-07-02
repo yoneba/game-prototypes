@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="sevenbridge.css">
+    <title>セブンブリッジ</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="810" height="540"></canvas>
+    <div id="startdiv">
+        <input type="button" value="スタート" onclick="game_start();" />
+        <input type="button" value="設定" onclick="show_configdiv();" />
+    </div>
+    <div id="configdiv">
+        ジョーカーの使用枚数&nbsp;
+        <input type="radio" name="jkrnumradio" value="0" checked />
+        0枚&nbsp;
+        <input type="radio" name="jkrnumradio" value="1" />
+        1枚&nbsp;
+        <input type="radio" name="jkrnumradio" value="2" />
+        2枚&nbsp;
+        <input type="radio" name="jkrnumradio" value="3" />
+        3枚<br />
+        <fieldset>
+            <legend>減点方式</legend>
+            ジョーカーを最後まで持っていると減点が
+            <input type="radio" name="jkrpenradio" value="1" checked />
+            1倍&nbsp;
+            <input type="radio" name="jkrpenradio" value="2" />
+            2倍&nbsp;
+            <input type="radio" name="jkrpenradio" value="5" />
+            5倍<br />
+            7を最後まで持っていると減点が
+            <input type="radio" name="sevenpenradio" value="1" checked />
+            1倍&nbsp;
+            <input type="radio" name="sevenpenradio" value="2" />
+            2倍<br />
+            <input type="checkbox" id="onekillcheck" />
+            一気あがりの時、減点が2倍<br />
+            <input type="checkbox" id="nonroyalpointcheck" />
+            2～9(7を除く)は数字どおりの点数<br />
+        </fieldset>
+        <input type="button" value="OK" id="configcompletebtn" onclick="initialize();" />
+    </div>
+    <div id="furodiv">
+        <input type="button" value="チー" id="chowbtn" onclick="chowbtn_clicked();" />
+        <input type="button" value="ポン" id="pungbtn" onclick="pungbtn_clicked();" />
+        <input type="button" value="スルー" id="throughbtn" onclick="throughbtn_clicked();" />
+    </div>
+    <input type="button" value="検討" id="inquirebtn" onclick="inquirebtn_clicked();" />
+    <input type="button" value="戻る" onclick="initialize();" style="font-size:20px;width:80px;height:55px;vertical-align:middle;" />
+    <span>
+        はやい
+        <input type="range" id="speedrange" min="200" max="1200" onclick="set_speed();" />
+        おそい
+    </span>
+    <div id="opinionboard">
+        <h2>コンピューターの見解</h2>
+        <div id="opinion"></div>
+    </div>
+	<script type="text/javascript" src="sevenbridge.js"></script>
+	<script type="text/javascript" src="routine.js"></script>
+	<script type="text/javascript" src="graphics.js"></script>
+	<script type="text/javascript" src="interface.js"></script>
+    <script>
+		if (!canvas || !canvas.getContext) {
+			alert("お使いのブラウザはキャンバス機能に未対応です");
+		}
+		else {
+			canvas.addEventListener('click', canvas_clicked, false);
+		    initialize();
+		}
+    </script>
+</body>
+</html>

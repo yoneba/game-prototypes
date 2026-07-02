@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>せーので五目</title>
+</head>
+
+<body>
+	<svg width="500" height="500" style="display:block;margin-bottom:10px;">
+		<rect width="100%" height="100%" fill="burlywood"></rect>
+		<g id="grid"></g>
+		<g id="knots"></g>
+		<g id="discs"></g>
+		<g id="stress"></g>
+	</svg>
+	<input type="button" id="decide" value="確定" style="width:160px;height:90px;font-size:50px;" />
+	<span id="message" style="margin-left:20px;font-size:50px;"></span>
+    <script type="text/javascript">
+		const svgns = "http://www.w3.org/2000/svg";
+		const size = 19;
+
+		let move = [null, null];
+
+		window.onload = game_start;
+
+		function game_start() {
+			move[0] = move[1] = null;
+			initialize_board();
+			decide.disabled = true;
+			message.innerText = "黒の番です";
+		}
+
+		function initialize_board() {
+			while (grid.hasChildNodes()) grid.removeChild(grid.firstChild);
+			while (knots.hasChildNodes()) knots.removeChild(knots.firstChild);
+			while (discs.hasChildNodes()) discs.removeChild(discs.firstChild);
+			while (stress.hasChildNodes()) stress.removeChild(stress.firstChild);
+			for (let y = 50 / size; y < 100; y += 100 / size) {
+				grid.appendChild(create_line(50 / size, y, 100 - 50 / size, y));
+				grid.appendChild(create_line(y, 50 / size, y, 100 - 50 / size));
+			}
+			for (let y = 50 - 100 * Math.floor(size / 3) / size; y < 100; y += 100 * Math.floor(size / 3) / size)
+				for (let x = 50 - 100 * Math.floor(size / 3); x < 100; x += 100 * Math.floor(size / 3) / size)
+					knots.appendChild(create_circle(x, y, 10 / size, "black"));
+			for (let y = -50 / size; y < 100; y += 100 / size)
+				for (let x = -50 / size; x < 100; x += 100 / size)
+					discs.appendChild(create_disc(x, y, 40 / size));
+			for (let x = -50 / size; x < 100 + 100 / size; x += 100 / size)discs.appendChild(create_disc(x, 100 + 50 / size, 40 / size));
+			for (let i = 0; i < 2; i++)stress.appendChild(create_rect(100, 100, 90 / size, 90 / size, "red"));
+		}
+
+		decide.onclick = function () {
+			if (move[0] === null) {
+				move[0] = clear_temporary();
+				message.innerText = "白の番です";
+			}
+			else {
+				move[1] = clear_temporary();
+				message.innerText = "黒の番です";
+				execute_move();
+				move[0] = move[1] = null;
+			}
+			decide.disabled = true;
+		};
+
+		function execute_move() {
+			move[0].setAttribute("fill", "black");
+			move[1].setAttribute("fill", "white");
+			let position = Array.from(move, x => Array.from(discs.childNodes).indexOf(x)), achieve = [false, false];
+			for (let i = 0; i < 2; i++)
+				for (let d of [1, size, size + 1, size + 2])
+					if (sequence_length(position[i], d) == 5)
+						achieve[i] = true;
+			if (move[0] == move[1] || achieve[0] && achieve[1]) {
+				move[0].setAttribute("fill", "burlywood");
+				move[1].setAttribute("fill", "burlywood");
+			}
+			else if (achieve[0]) message.innerText = "黒の勝ちです";
+			else if (achieve[1]) message.innerText = "白の勝ちです";
+			for (let i = 0; i < 2; i++) {
+				let y = Math.floor(position[i] / (size + 1)) - 1, x = position[i] % (size + 1) - 1;
+				stress.childNodes[i].setAttribute("y", (100 * y + 5) / size + "%"), stress.childNodes[i].setAttribute("x", (100 * x + 5) / size + "%");
+			}
+		}
+
+		function sequence_length(pos, dir) {
+			let len = 1, col = discs.childNodes[pos].getAttribute("fill");
+			for (let k = pos + dir; discs.childNodes[k].getAttribute("fill") == col; k += dir)++len;
+			for (let k = pos - dir; discs.childNodes[k].getAttribute("fill") == col; k -= dir)++len;
+			return len;
+		}
+
+		function create_disc(x, y, r) {
+			let disc = create_circle(x, y, r, "transparent");
+			disc.onclick = function () {
+				if (this.getAttribute("fill") != "transparent" || message.firstChild.data[2] == "勝") return;
+				clear_temporary();
+				let turn = move[0] === null ? "black" : "white";
+				this.setAttribute("fill", turn);
+				this.setAttribute("opacity", 0.5);
+				decide.disabled = false;
+			};
+			return disc;
+		}
+
+		function create_line(x1, y1, x2, y2) {
+			let line = document.createElementNS(svgns, "line");
+			line.setAttribute("x1", x1 + "%"), line.setAttribute("y1", y1 + "%"), line.setAttribute("x2", x2 + "%"), line.setAttribute("y2", y2 + "%");
+			line.setAttribute("stroke", "black");
+			return line;
+		}
+
+		function create_circle(x, y, r, col) {
+			let circle = document.createElementNS(svgns, "circle");
+			circle.setAttribute("cx", x + "%"), circle.setAttribute("cy", y + "%"), circle.setAttribute("r", r + "%");
+			circle.setAttribute("fill", col);
+			return circle;
+		}
+
+		function create_rect(x, y, w, h, col) {
+			let rect = document.createElementNS(svgns, "rect");
+			rect.setAttribute("x", x + "%"), rect.setAttribute("y", y + "%"), rect.setAttribute("width", w + "%"), rect.setAttribute("height", h + "%");
+			rect.setAttribute("fill", "transparent");
+			rect.setAttribute("stroke", col);
+			rect.setAttribute("stroke-width", 1.5);
+			return rect;
+		}
+
+		function clear_temporary() {
+			let tmp = null;
+			for (let i = 0; i < discs.childNodes.length; i++)if (discs.childNodes[i].hasAttribute("opacity")) tmp = discs.childNodes[i];
+			if (tmp) {
+				tmp.setAttribute("fill", "transparent");
+				tmp.removeAttribute("opacity");
+			}
+			return tmp;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="天九牌のCPU対戦ができます。ヒント機能によってコンピュータの思考プロセスを見ることができ、上達につながります。">
+    <meta name="keywords" content="天九牌,天,九,牌,牌九,打天九,ゲーム,CPU対戦,遊び,麻雀">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="tenkyu.js"></script>
+    <script type="text/javascript" src="routine.js"></script>
+    <script type="text/javascript" src="graphics.js"></script>
+    <title>天九牌</title>
+</head>
+
+<body>
+    <canvas id="F" width="750" height="560"></canvas><br>
+    <input type="button" value="出す" onclick="outbutton()" style="WIDTH:60px; HEIGHT:40px" />
+    <input id="S" type="button" value="牌種でソート" onclick="sortbutton()" style="WIDTH:120px; HEIGHT:40px" />
+    <input id="D" type="checkbox" name="two" onclick="fastcheck(this.checked)" />
+    <span style="margin-right: 200px;">2倍速</span>
+    <input type="button" value="ヒント" onclick="hintbutton()" style="WIDTH:70px; HEIGHT:40px" /><br><br>
+    <div id="hint"></div>
+    <script>
+	game();
+    </script>
+</body>
+</html>

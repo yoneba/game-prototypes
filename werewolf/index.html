@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="werewolf.css" />
+    <title>汝は人狼なりや？</title>
+</head>
+
+<body>
+    <div id="configuration">
+		<div style="display:flex;justify-content:center;">
+			<fieldset>
+				<legend>参加プレイヤー</legend>
+				<div><input type="checkbox" checked />荒木健司</div>
+				<div><input type="checkbox" checked />牛丸陽太</div>
+				<div><input type="checkbox" checked />川崎優</div>
+				<div><input type="checkbox" checked />黒河天</div>
+				<div><input type="checkbox" checked />高須佑哉</div>
+				<div><input type="checkbox" checked />出町彰啓</div>
+				<div><input type="checkbox" checked />平手一成</div>
+				<div><input type="checkbox" checked />米林悠真</div>
+			</fieldset>
+			<fieldset>
+				<legend>役職配分</legend>
+				<div><span class="roletext"></span></div>
+				<div><span class="roletext"></span></div>
+				<div><span class="roletext"></span></div>
+				<div><span class="roletext"></span></div>
+				<div><span class="roletext"></span></div>
+				<div><span class="roletext"></span></div>
+				<div><span class="roletext"></span></div>
+				<div><span class="roletext"></span></div>
+			</fieldset>
+		</div>
+        <input type="button" value="START" class="mainbtn alpha" />
+    </div>
+    <div id="entry">
+        <h3></h3>
+        <h2><span class="nametext"></span>さん</h2>
+        <input type="button" value="ENTER" class="mainbtn alpha" />
+    </div>
+	<div id="action">
+		<h2>あなたは<span class="roletext"></span>です</h2>
+		<div id="psychokiller">あなたを対象に特殊能力を発動したプレイヤーは死亡します</div>
+		<div id="cosplayer">占いおよび霊媒では<span class="roletext" style="color:red;">人狼</span>と判定されます</div>
+		<div id="personality">
+			<div><span style="font-weight:bold;">所属陣営</span>：<span class="roletext"></span>チーム</div>
+			<div><span style="font-weight:bold;">勝利条件</span>：<span class="roletext"></span>チームの勝利</div>
+		</div>
+		<div id="actionguide"></div>
+		<div id="greatnecromancer">
+			<div><input type="radio" name="moveoption" />人狼と疑う</div>
+			<div><input type="radio" name="moveoption" />役職を奪う</div>
+		</div>
+		<div class="playerlist">
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+			<div><input type="radio" name="target" /><span class="nametext"></span><span class="roletext"></span></div>
+		</div>
+		<div id="wolf">
+			<div><input type="radio" name="confidence" />なんとなくだけど殺そう(1票)</div>
+			<div><input type="radio" name="confidence" />殺したほうがいい(2票)</div>
+			<div><input type="radio" name="confidence" />殺さないと危険(3票)</div>
+		</div>
+		<div id="bomber"><input type="checkbox" />爆弾を仕掛ける</div>
+		<input type="button" value="OK" class="mainbtn alpha" />
+	</div>
+	<div id="dawn">
+		<div style="margin:0 auto;text-align:left;">
+			<div>恐ろしい夜が明け、朝がやってきました</div>
+			<div id="deaddiv">昨晩の犠牲者は<span style="font-weight:bold;"></span>です</div>
+			<div id="survivediv">昨晩の犠牲者はいませんでした</div>
+			<div id="suspectdiv">
+				また、にわかに疑われているプレイヤーが浮上しました<br />
+				それは、<span class="nametext" style="font-weight:bold;"></span>さんです
+			</div>
+			<div id="nosuspectdiv">また、強く疑われているプレイヤーはいませんでした</div>
+		</div>
+		<input type="button" value="OK" class="mainbtn alpha" />
+	</div>
+	<div id="banish">
+		<h2><span class="nametext"></span>さんは処刑されました</h2>
+		<input type="button" value="OK" class="mainbtn alpha" />
+	</div>
+	<div id="result">
+		<h2><span class="roletext"></span>チームの勝利です！</h2>
+		<div class="playerlist">
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+			<div><span class="nametext"></span><span class="roletext"></span></div>
+		</div>
+		<input type="button" value="OK" class="mainbtn alpha" />
+	</div>
+	<script type="text/javascript" src="werewolf.js"></script>
+	<script type="text/javascript" src="wizard.js"></script>
+	<script type="text/javascript" src="interface.js"></script>
+</body>
+</html>
